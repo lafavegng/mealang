@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Phonemic Chart for MEA Acronym</title>
+    <style>
+        /* CSS for styling the chart and interactive elements */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .phoneme-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .phoneme-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .phoneme-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .phoneme-details {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #eef;
+            border-radius: 5px;
+        }
+        .shape {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            display: block;
+        }
+        /* Simple SVG shapes for illustration */
+        .spiky { /* For sharp, angular */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,0 100,40 100,100 50,80 0,100 0,40" fill="red"/></svg>') no-repeat center/contain;
+        }
+        .geometric { /* For structured */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="blue"/><circle cx="50" cy="50" r="20" fill="white"/></svg>') no-repeat center/contain;
+        }
+        .hybrid { /* For mixed */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 50 Q50 10 90 50 Q50 90 10 50" fill="green"/></svg>') no-repeat center/contain;
+        }
+        .wavy { /* For flowing */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 50 Q25 0 50 50 Q75 100 100 50" fill="orange" stroke="black"/></svg>') no-repeat center/contain;
+        }
+        .blob { /* For rounded */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="purple"/></svg>') no-repeat center/contain;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Phonemic Chart for MEA Acronym Variations</h1>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">This interactive chart explores the phonemic, psychological, and linguistic significance of the acronym "MEA" in five variations, focusing on typing (orthography), pronunciation, and derived abstract shapes. Click on each card to reveal details. Shapes are inspired by sound symbolism (e.g., bouba-kiki effect) and visual perception of letters.</p>
+    
+    <div class="chart-container">
+        <!-- Card 1 -->
+        <div class="phoneme-card" onclick="toggleDetails(this)">
+            <div class="phoneme-title">1. MEA - Separate Letters, Spelled Out, Closed Ended A</div>
+            <div>Pronunciation: /ɛm/ /iː/ /æ/ (short 'a' as in 'cat')</div>
+            <div class="shape spiky"></div>
+            <div class="phoneme-details">
+                <p><strong>Linguistic:</strong> Disjointed initialism; angular uppercase visuals; short /æ/ adds tension. Echoes Latin roots but fragmented.</p>
+                <p><strong>Psychological:</strong> Evokes urgency and sharpness; all caps perceived as shouting, increasing competence but reducing warmth.</p>
+                <p><strong>Significance:</strong> Implies disruption; useful for alerts but may intimidate. Edge cases: Dialectal vowel shifts soften /æ/.</p>
+                <p><strong>Shape:</strong> Spiky starburst, symbolizing energy and angularity from fronted vowels and blocky letters.</p>
+            </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="phoneme-card" onclick="toggleDetails(this)">
+            <div class="phoneme-title">2. MEA - Pronounced as a Word, All Caps</div>
+            <div>Pronunciation: /ˈmiː.ə/ (mee-uh)</div>
+            <div class="shape geometric"></div>
+            <div class="phoneme-details">
+                <p><strong>Linguistic:</strong> Blended word; all caps for emphasis; schwa /ə/ softens ending. Semantic tie to "mea culpa" (confession).</p>
+                <p><strong>Psychological:</strong> Authoritative but distant; smooth flow tempers sharpness, blending bouba and kiki effects.</p>
+                <p><strong>Significance:</strong> Conveys structure; in branding, boosts attention but risks alienation. Nuances: Vowel reduction in fast speech.</p>
+                <p><strong>Shape:</strong> Sharp-edged polygon, representing confined intensity from angular typing.</p>
+            </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="phoneme-card" onclick="toggleDetails(this)">
+            <div class="phoneme-title">3. Mea- - Separate Letters, Spelled Out, Closed Ended A</div>
+            <div>Pronunciation: /ɛm/ /iː/ /æ/</div>
+            <div class="shape hybrid"></div>
+            <div class="phoneme-details">
+                <p><strong>Linguistic:</strong> Title case with hyphen for continuation; mixed visuals (sharp M, curved ea).</p>
+                <p><strong>Psychological:</strong> Balanced authority and warmth; disjointed sounds create friction but softened by lowercase.</p>
+                <p><strong>Significance:</strong> Suggests transition; enhances readability in titles. Implications: Attention drawn to capital; edge cases in compounding.</p>
+                <p><strong>Shape:</strong> Irregular hybrid of angles and curves, symbolizing complexity.</p>
+            </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="phoneme-card" onclick="toggleDetails(this)">
+            <div class="phoneme-title">4. Mea- - Pronounced as a Word, Capital M</div>
+            <div>Pronunciation: /ˈmiː.ə/</div>
+            <div class="shape wavy"></div>
+            <div class="phoneme-details">
+                <p><strong>Linguistic:</strong> Proper noun fragment; hyphen implies flow; smooth glide with schwa.</p>
+                <p><strong>Psychological:</strong> Moderate emphasis; flowing sounds evoke bouba roundness, fostering engagement.</p>
+                <p><strong>Significance:</strong> Adaptable in narratives; subtle tension from initial capital. Nuances: Stress shifts in compounds.</p>
+                <p><strong>Shape:</strong> Wavy undulations, representing rhythm and harmony.</p>
+            </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="phoneme-card" onclick="toggleDetails(this)">
+            <div class="phoneme-title">5. mea- - Pronounced as a Word, All Lowercase (Mid-Sentence)</div>
+            <div>Pronunciation: /ˈmiː.ə/ (potentially reduced)</div>
+            <div class="shape blob"></div>
+            <div class="phoneme-details">
+                <p><strong>Linguistic:</strong> Casual, integrated form; rounded lowercase visuals; contextual softening.</p>
+                <p><strong>Psychological:</strong> Friendly and approachable; fully bouba-like with soft /m/ and schwa.</p>
+                <p><strong>Significance:</strong> Builds rapport in informal text; may seem unprofessional formally. Edge cases: Intonation varies poetically.</p>
+                <p><strong>Shape:</strong> Amorphous blob, symbolizing ease and inclusivity.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactivity
+        function toggleDetails(card) {
+            const details = card.querySelector('.phoneme-details');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+            } else {
+                // Hide all other details first for accordion-like behavior
+                document.querySelectorAll('.phoneme-details').forEach(d => d.style.display = 'none');
+                details.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
