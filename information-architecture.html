@@ -1,0 +1,443 @@
+<!-- information-architecture.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Information Architecture: The blueprint for findability.">
+    <title>Information Architecture | MEA Insight Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #0A1128;
+            --academy-purple: #7B2CBF;
+            --games-cyan: #4CC9F0;
+            --alliance-green: #2D6A4F;
+            --magma-orange: #FF4500;
+            --ember: #FF8C00;
+            --gradient: linear-gradient(to right, var(--magma-orange), var(--ember));
+            --shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        body {
+            background: var(--obsidian);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        .light {
+            background: white;
+            color: var(--obsidian);
+        }
+        .light .card {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Saira Stencil One', sans-serif;
+            font-weight: 400;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--obsidian);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--games-cyan);
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px;
+            transition: 0.3s;
+        }
+        .nav-links {
+            display: flex;
+        }
+        .theme-toggle {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+        main {
+            padding: 5rem 1rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .logo {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .logo svg {
+            width: 100px;
+            height: auto;
+            transition: 0.3s;
+        }
+        .logo .hidden {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .logo:hover .hidden {
+            opacity: 1;
+        }
+        .tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--academy-purple);
+            padding: 0.5rem;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.8rem;
+        }
+        .logo:hover .tooltip {
+            display: block;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            loading: lazy;
+            alt: "";
+        }
+        .search-bar {
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .quiz {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .quiz button {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--magma-orange);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--obsidian);
+            margin-top: 2rem;
+        }
+        footer a {
+            color: var(--games-cyan);
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tab-button {
+            background: var(--academy-purple);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .tab-button.active {
+            background: var(--gradient);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-open ul {
+                display: flex;
+            }
+            .hamburger.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+        @media (min-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .card-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="dark">
+    <header>
+        <nav>
+            <div class="hamburger" aria-label="Toggle navigation" tabindex="0" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="mea-acronym.html">MEA Acronym</a></li>
+                <li><a href="phonosemantics.html">Phonosemantics</a></li>
+                <li><a href="visual-orthographic.html">Visual & Orthographic</a></li>
+                <li><a href="branding-applications.html">Branding Applications</a></li>
+                <li><a href="typography-psychology.html">Typography Psychology</a></li>
+                <li><a href="information-architecture.html">Information Architecture</a></li>
+                <li><a href="visual-hierarchy.html">Visual Hierarchy</a></li>
+                <li><a href="layout-psychology.html">Layout Psychology</a></li>
+                <li><a href="mea-lang-phonemic.html">MEA Lang Phonemic Chart</a></li>
+                <li><a href="formant-visualization.html">Formant Visualization</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">Toggle Theme</button>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Information Architecture: The Blueprint for Findability</h1>
+            <div class="logo" aria-label="MEA Logo" tabindex="0">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <path d="M10 90 L50 10 L90 90" fill="none" stroke="white" stroke-width="2"/>
+                    <path class="hidden" d="M20 80 H80 M20 50 H80 M20 20 H80" fill="none" stroke="var(--games-cyan)" stroke-width="2"/>
+                    <path class="hidden" d="M30 80 L50 20 L70 80" fill="none" stroke="var(--alliance-green)" stroke-width="2"/>
+                </svg>
+                <div class="tooltip">MEA Negative-Space Logo: M as mountain of potential; hover reveals E (energy bridge) and A (alliance peak).</div>
+            </div>
+            <p>Information Architecture (IA) is the practice of organizing and structuring content to make it easy to find and understand. Often described as the 'skeleton' of a digital product, IA bridges the gap between raw data and a user-friendly interface, ensuring that information chaos is transformed into a logical, navigable flow.</p>
+        </section>
+        <input type="text" class="search-bar" placeholder="Search sections..." oninput="searchContent(this.value)" aria-label="Search">
+        <section>
+            <h2>The IA Triad</h2>
+            <div class="card-container">
+                <div class="card" role="article">
+                    <h3>The User</h3>
+                    <p>Focuses on needs, behaviors, and mental models. IA must align with how the target audience naturally expects to find information.</p>
+                    <p>Focus: Expectations</p>
+                    <p>Goal: Intuitive Findability</p>
+                    <p>Method: User Personas</p>
+                </div>
+                <div class="card" role="article">
+                    <h3>The Content</h3>
+                    <p>An inventory of the data, documents, and media. IA maps the relationships, hierarchies, and volume of the information provided.</p>
+                    <p>Focus: Data Structure</p>
+                    <p>Goal: Logical Organization</p>
+                    <p>Method: Content Audit</p>
+                </div>
+                <div class="card" role="article">
+                    <h3>The Context</h3>
+                    <p>The business goals, technical constraints, and cultural environment. IA must serve organizational objectives while being technically feasible.</p>
+                    <p>Focus: Business Needs</p>
+                    <p>Goal: Strategic Alignment</p>
+                    <p>Method: Stakeholder Analysis</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Four Systems of IA</h2>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'organization')">Organization</button>
+                <button class="tab-button" onclick="openTab(event, 'labeling')">Labeling</button>
+                <button class="tab-button" onclick="openTab(event, 'navigation')">Navigation</button>
+                <button class="tab-button" onclick="openTab(event, 'search')">Search</button>
+            </div>
+            <div id="organization" class="tab-content active">
+                <p>Categorizing the Chaos: Organization systems define how content is grouped. Common schemes include Alphabetical (indexes), Chronological (archives), or Topic-based (encyclopedias). The choice depends on the user's primary intent.</p>
+                <div class="card" role="article">
+                    <img src="https://example.com/library-image.jpg" alt="Library shelves representing organization" loading="lazy">
+                </div>
+            </div>
+            <div id="labeling" class="tab-content">
+                <p>The Power of Words: Labeling systems represent categories through consistent, familiar language. Effective labels provide an 'information scent'—a clear hint of what lies behind the link without requiring a click.</p>
+                <h3>Best Practices for Labels</h3>
+                <ul>
+                    <li>User-Centric: Use words your audience actually speaks, not internal jargon.</li>
+                    <li>Consistent: Ensure 'Contact' means the same thing across the entire site.</li>
+                    <li>Predictable: Avoid 'clever' labels that hide the true destination.</li>
+                </ul>
+            </div>
+            <div id="navigation" class="tab-content">
+                <p>Hierarchical: A top-down structure moving from general categories to specific sub-pages.</p>
+                <p>Sequential: A linear path for processes like checkout or onboarding tutorials.</p>
+            </div>
+            <div id="search" class="tab-content">
+                <p>The Safety Net: Search systems provide a direct path to specific items when browsing fails. IA defines the metadata and tagging that make search results relevant and accurate.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Validating Your Structure</h2>
+            <div class="card-container">
+                <div class="card" role="article">
+                    <h3>Card Sorting</h3>
+                    <p>Generative research: Users group content cards to reveal their natural mental models.</p>
+                </div>
+                <div class="card" role="article">
+                    <h3>Tree Testing</h3>
+                    <p>Evaluative research: Users try to find items in a text-only hierarchy to find usability issues.</p>
+                </div>
+                <div class="card" role="article">
+                    <h3>Sitemapping</h3>
+                    <p>Visualizing the entire architecture to identify gaps or overly deep hierarchies.</p>
+                </div>
+                <div class="card" role="article">
+                    <h3>User Flow</h3>
+                    <p>Mapping the step-by-step paths users take to complete a specific task.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Examples Tied to MEA Pillars</h2>
+            <p>For MEA Academy (Brain): Use topic-based organization for educational modules.</p>
+            <p>For MEA Games (Engine): Sequential navigation for tutorials and levels.</p>
+            <p>For MEA Alliance (Hands): User-centric labels for legal and merchandise sections.</p>
+        </section>
+        <section class="quiz" aria-labelledby="quiz-title">
+            <h2 id="quiz-title">Quick Quiz: Information Architecture</h2>
+            <p>What is the focus of the User in IA Triad?</p>
+            <button onclick="checkAnswer(0, 'Expectations')">Expectations</button>
+            <button onclick="checkAnswer(0, 'Data Structure')">Data Structure</button>
+            <button onclick="checkAnswer(0, 'Business Needs')">Business Needs</button>
+            <p id="quiz-result"></p>
+        </section>
+    </main>
+    <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top" tabindex="0">↑</div>
+    <footer>
+        <a href="#top">Back to Top</a>
+        <a href="../index.html">Back to Hub</a>
+        <a href="https://meabrand.meagames.org/">MEA Brand</a>
+        <a href="https://mealang.meagames.org/">MEA Lang</a>
+    </footer>
+    <script>
+        function toggleNav() {
+            document.querySelector('.hamburger').classList.toggle('open');
+            document.querySelector('.nav-links').classList.toggle('nav-open');
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'light') toggleTheme();
+        function searchContent(query) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = section.textContent.toLowerCase().includes(query.toLowerCase()) ? 'block' : 'none';
+            });
+        }
+        function checkAnswer(question, answer) {
+            const correct = ['Expectations']; 
+            const result = document.getElementById('quiz-result');
+            result.textContent = answer === correct[question] ? 'Correct!' : 'Try again.';
+        }
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        window.onscroll = () => {
+            document.querySelector('.back-to-top').style.display = window.scrollY > 200 ? 'block' : 'none';
+        };
+        function openTab(event, tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</html>
